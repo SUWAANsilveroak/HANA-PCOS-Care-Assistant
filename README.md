@@ -16,19 +16,72 @@ Our CNN model architecture is specifically optimized for analyzing ultrasound im
 ## 🚀 Getting Started
 
 ### Prerequisites
+- Python 3.x installed on your system
+- Git installed
+- VS Code (recommended) or any preferred IDE
 
-pip install -r requirements.txt
+### Environment Setup
+1. **Clone the Repository**
+   ```bash
+   git clone [repository-url]
+   cd [repository-name]
+   ```
+
+2. **Create and Activate Virtual Environment**
+   ```bash
+   # Create virtual environment
+   python -m venv pcos_env
+
+   # Activate virtual environment
+   # For Windows:
+   pcos_env\Scripts\activate
+   # For Linux/Mac:
+   source pcos_env/bin/activate
+   ```
+
+3. **Install Required Packages**
+   ```bash
+   # Upgrade pip first
+   pip install --upgrade pip
+
+   # Option 1: Install from requirements.txt
+   pip install -r requirements.txt
+
+   # Option 2: If requirements.txt is not available, install core packages
+   pip install numpy pandas matplotlib opencv-python scikit-learn tensorflow keras pillow seaborn ipykernel jupyter
+   ```
+
+4. **Setup Jupyter Kernel**
+   ```bash
+   python -m ipykernel install --user --name=pcos_env
+   ```
+
+5. **IDE Setup**
+   - **For VS Code Users:**
+     1. Open your `.ipynb` file
+     2. Click kernel selector (top-right corner)
+     3. Select "Python Environments..."
+     4. Choose "pcos_env"
+   
+   - **For Jupyter Notebook Users:**
+     1. Run `jupyter notebook` in terminal
+     2. Open your notebook
+     3. Select Kernel → Change kernel → pcos_env
 
 ### Dataset Preparation
 1. Download the training and testing datasets
-2. Compress them into zip files:
-3. Upload these zip files to your Google Colab environment
+2. Compress them into zip files
+3. Upload these zip files to your working environment
 
 ### Running the Model
-1. Open the notebook in Google Colab
-2. Mount your Google Drive
-3. Upload the zipped datasets
-4. Execute all cells sequentially
+1. Open the notebook in your IDE
+2. Ensure "pcos_env" kernel is selected
+3. Execute all cells sequentially
+
+### Common Setup Issues
+- If kernel not showing up: Restart IDE
+- If packages missing: Ensure virtual environment is activated (should see `(pcos_env)` in terminal)
+- For package conflicts: Create a new virtual environment and reinstall packages
 
 ## 📊 Results
 - Model Accuracy: [Your accuracy metrics]
