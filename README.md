@@ -70,8 +70,7 @@ Our CNN model architecture is specifically optimized for analyzing ultrasound im
 
 ### Dataset Preparation
 1. Download the training and testing datasets
-2. Compress them into zip files
-3. Upload these zip files to your working environment
+2. Place the datasets in the same directory as the notebook
 
 ### Running the Model
 1. Open the notebook in your IDE
@@ -84,9 +83,9 @@ Our CNN model architecture is specifically optimized for analyzing ultrasound im
 - For package conflicts: Create a new virtual environment and reinstall packages
 
 ## 📊 Results
-- Model Accuracy: [Your accuracy metrics]
-- Validation Results: [Your validation metrics]
-- Testing Performance: [Your testing metrics]
+- Model Accuracy: [1]
+- Validation Results: [0.99]
+- Testing Performance: [Ongoing]
 
 ## 🎯 Future Vision: PCOs Support System
 
@@ -116,7 +115,7 @@ We welcome contributions! Here's how you can help:
 5. Open a Pull Request
 
 ## 🙏 Acknowledgments
-- [Special thanks to all contributors]
+- Special thanks to all contributors
 
 ## 📞 Contact
 - LinkedIn: [[My LinkedIn](https://www.linkedin.com/in/shubham-damai-data-analyst/)]
