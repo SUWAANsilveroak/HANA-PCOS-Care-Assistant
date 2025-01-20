@@ -15,16 +15,19 @@ st.set_page_config(
 # Custom CSS to control width and styling
 st.markdown("""
     <style>
+        /* Hide streamlit branding */
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        
+        /* Main container width */
         .main > div {
             max-width: 1200px;
             padding: 1rem;
         }
+        
+        /* Image styling */
         .stImage {
             max-width: 470px !important;
-            margin: auto;
-        }
-        .css-1v0mbdj.e115fcil1 {
-            max-width: 1200px;
             margin: auto;
         }
         .image-container {
@@ -35,6 +38,31 @@ st.markdown("""
             margin: auto;
             max-width: 470px;
         }
+        
+        /* New title styling */
+        h1 {
+            text-align: center !important;
+            font-size: 50px !important;
+            font-weight: bold !important;
+            padding: 20px !important;
+        }
+        
+        /* Ensuring the title container is centered */
+        div.element-container:has(h1) {
+            width: 100% !important;
+            text-align: center !important;
+        }
+        
+        /* Custom title class */
+        .big-title {
+            font-size: 50px !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            padding: 20px 0px !important;
+            margin: 0 auto !important;
+            display: block !important;
+        }
+        
     </style>
 """, unsafe_allow_html=True)
 
@@ -94,7 +122,7 @@ def predict_pcos_tflite(interpreter, image_array):
 
 def main():
     # Sidebar
-    st.sidebar.title("Upload Image")
+    st.sidebar.title("Upload Image 🖼️")
     st.sidebar.write("Upload an ultrasound image to check for PCOS")
     
     # File uploader in sidebar
@@ -124,8 +152,10 @@ def main():
     """)
     
     # Main content area
-    st.title("PCOS Detection from Ultrasound Images")
+    st.markdown('<p class="big-title">🏥 PCOS Detection System 🔍</p>', unsafe_allow_html=True)
+    # st.title("PCOS Detection from Ultrasound Images")
     
+
     # Load TFLite model
     interpreter = load_tflite_model()
     

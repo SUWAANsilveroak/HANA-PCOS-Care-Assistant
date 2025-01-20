@@ -4,6 +4,10 @@
 
 This project implements a Convolutional Neural Network (CNN) model designed to detect Polycystic Ovary Syndrome (PCOS) from ultrasound images. The model has been trained to identify characteristic patterns associated with PCOS, providing a preliminary screening tool for healthcare professionals.
 
+## 📱 Check the Model in Action
+You can check the model's predictions for ultrasound images using our Streamlit app:
+- [Image Prediction App](https://pcosassistance.streamlit.app/)
+
 ## 🧠 Model Architecture
 
 Our CNN model architecture is specifically optimized for analyzing ultrasound imagery:
