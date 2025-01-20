@@ -107,6 +107,13 @@ def main():
     
     # Check button in sidebar
     check_button = st.sidebar.button("Check for PCOS", use_container_width=True)
+
+    # Add a note below the check button
+    st.sidebar.warning("""
+    **Note:** This model is still under development. 
+    Please only upload ultrasound images of the ovary for analysis. 
+    Uploading other types of images may result in incorrect predictions.
+    """)
     
     # Add disclaimer in sidebar
     st.sidebar.markdown("---")
