@@ -3,7 +3,6 @@ import tensorflow as tf
 from PIL import Image
 import numpy as np
 from io import BytesIO
-import cv2
 
 # Set page configuration
 st.set_page_config(
@@ -19,7 +18,6 @@ st.markdown("""
             max-width: 1200px;
             padding: 1rem;
         }
-        /* Instagram-like image container */
         .stImage {
             max-width: 470px !important;
             margin: auto;
@@ -28,7 +26,6 @@ st.markdown("""
             max-width: 1200px;
             margin: auto;
         }
-        /* Custom image container */
         .image-container {
             background-color: #ffffff;
             padding: 10px;
@@ -162,7 +159,6 @@ def main():
             st.write("Please ensure you've uploaded a valid image file.")
     else:
         # Display placeholder when no image is uploaded
-        # Create centered columns for the placeholder
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
             st.markdown("""
