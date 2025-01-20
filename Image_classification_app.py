@@ -1,5 +1,6 @@
 import streamlit as st
 import tensorflow as tf
+from tensorflow.lite.python.interpreter import Interpreter
 from PIL import Image
 import numpy as np
 from io import BytesIO
@@ -37,14 +38,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Load the model
+# Load the TFLite model
 @st.cache_resource
-def load_model():
+def load_tflite_model():
     try:
-        model = tf.keras.models.load_model('pcos_detection_model.h5')
-        return model
+        interpreter = Interpreter(model_path='pcos_detection_model.tflite')
+        interpreter.allocate_tensors()
+        return interpreter
     except Exception as e:
-        st.error(f"Error loading model: {str(e)}")
+        st.error(f"Error loading TFLite model: {str(e)}")
         return None
 
 def preprocess_image(image, target_size=(224, 224)):
@@ -67,12 +69,22 @@ def preprocess_image(image, target_size=(224, 224)):
     
     return img_array
 
-def predict_pcos(model, image_array):
+def predict_pcos_tflite(interpreter, image_array):
     """
-    Make prediction using the model
+    Make prediction using the TFLite model
     """
     try:
-        prediction = model.predict(image_array)
+        input_details = interpreter.get_input_details()
+        output_details = interpreter.get_output_details()
+
+        # Set input tensor
+        interpreter.set_tensor(input_details[0]['index'], image_array.astype(np.float32))
+
+        # Invoke the interpreter
+        interpreter.invoke()
+
+        # Get output tensor
+        prediction = interpreter.get_tensor(output_details[0]['index'])
         probability = prediction[0][0]
         result = 'PCOS Negative' if probability > 0.5 else 'PCOS Positive'
         return result, probability
@@ -107,11 +119,11 @@ def main():
     # Main content area
     st.title("PCOS Detection from Ultrasound Images")
     
-    # Load model
-    model = load_model()
+    # Load TFLite model
+    interpreter = load_tflite_model()
     
-    if model is None:
-        st.error("Failed to load model. Please check if the model file exists.")
+    if interpreter is None:
+        st.error("Failed to load TFLite model. Please check if the model file exists.")
         return
     
     # Main content layout
@@ -139,7 +151,7 @@ def main():
                     processed_image = preprocess_image(image)
                     
                     # Make prediction
-                    result, probability = predict_pcos(model, processed_image)
+                    result, probability = predict_pcos_tflite(interpreter, processed_image)
                     
                     if result:
                         # Create columns for centered result
